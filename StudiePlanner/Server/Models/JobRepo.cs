@@ -50,15 +50,12 @@ namespace StudiePlanner.Server.Models
 
             if (updateJob != null)
             {
-                //updateJob.Voornaam = job.Voornaam;
-                //updateJob.Achternaam = job.Achternaam;
-                //updateJob.Adres = job.Adres;
-                //updateJob.Postcode = job.Postcode;
-                //updateJob.Logo = job.Logo;
-                //updateJob.KvkNummer = job.KvkNummer;
-                //updateJob.BtwNummer = job.BtwNummer;
-                //updateJob.Stad = job.Stad;
-                //updateJob.Goedgekeurd = false;
+                updateJob.Name = job.Name;
+                updateJob.Detail = job.Detail;
+                updateJob.Status = job.Status;
+                updateJob.StartDate = job.StartDate;
+                updateJob.EndDate = job.EndDate;
+                updateJob.DateAdded = DateTime.Now;
 
                 _mBDbContext.SaveChanges();
 
