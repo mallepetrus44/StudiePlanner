@@ -14,6 +14,6 @@ namespace StudiePlanner.Server.Models
         Job AddJob(Job job);
         Job UpdateJob(Job job);
         void DeleteJob(Guid jobId);
-        Job UploadJobDoc(MultipartFormDataContent content);
+        MultipartFormDataContent UploadJobDoc(MultipartFormDataContent content);
     }
 }

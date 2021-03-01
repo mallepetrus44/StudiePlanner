@@ -1,5 +1,77 @@
-﻿<h3>JobEdit</h3>
+﻿@page "/planner/JobEdit"
+@page "/planner/JobEdit/{Id}"
+@using StudiePlanner.Shared.Models
+@inherits JobEditBase
 
-@code {
+<section class="Job-edit">
+    @if (!Saved)
+    {
+        <h1 class="page-title">Details for @Job.Name</h1>
+        <EditForm Model="@Job" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
 
-}
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="title">Titel: </label>
+                <InputText id="title" class="form-control" @bind-Value="@Job.Name" placeholder="Titel"></InputText>
+                <ValidationMessage For="@(() => Job.Name)" />
+            </div>
+
+            <div class="form-group">
+                <label for="details">Details: </label>
+                <InputText id="details" class="form-control" @bind-Value="@Job.Detail" placeholder="Details"></InputText>
+                <ValidationMessage For="@(() => Job.Detail)" />
+            </div>
+
+            <div class="form-group">
+                <label for="StartDate">Startdatum: </label>
+                <InputDate id="StartDate" class="form-control" @bind-Value="@Job.StartDate" placeholder="Startdatum"></InputDate>
+                <ValidationMessage For="@(() => Job.StartDate)" />
+            </div>
+
+            <div class="form-group">
+                <label for="EndDate">Einddatum: </label>
+                <InputDate id="EndDate" class="form-control" @bind-Value="@Job.EndDate" placeholder="Einddatum"></InputDate>
+                <ValidationMessage For="@(() => Job.EndDate)" />
+            </div>
+
+            <div class="form-group">
+                <label for="DateAdded">Aanmaakdatum: </label>
+                <InputDate id="DateAdded" class="form-control" @bind-Value="@Job.DateAdded" placeholder="Aanmaakdatum"></InputDate>
+                <ValidationMessage For="@(() => Job.DateAdded)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="status" class="col-sm-3">Status: </label>
+                <InputSelect id="status" class="form-control col-sm-8" @bind-Value=@Job.Status>
+                    <option value="@(Status.Gepland)">Gepland</option>
+                    <option value="@(Status.Gestart)">Gestart</option>
+                    <option value="@(Status.Voltooid)">Voltooid</option>
+                </InputSelect>
+            </div>         
+
+            @*<div class="form-group">
+                <label for="Bestanden">Document: </label>
+
+                <InputFile OnChange="HandleFileSelected" />
+
+                @if (File != null)
+                {
+                    <p>Name: @File.Name</p>
+                    <p>Size in bytes: @File.Size</p>
+                    <p>Last modified date: @File.LastModified.ToShortDateString()</p>
+                }
+
+                <ValidationMessage For="@(() => Job.Upload)" />
+            </div>*@
+
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+        </EditForm>
+    }
+    else
+    {
+        <div class="alert @StatusClass">@Message</div>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Back to overview</a>
+    }
+</section>

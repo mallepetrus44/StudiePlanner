@@ -66,7 +66,7 @@ namespace StudiePlanner.Server.Models
             }
             return null;
         }
-        public Job UploadJobDoc(MultipartFormDataContent content)
+        public MultipartFormDataContent UploadJobDoc(MultipartFormDataContent content)
         {
             throw new NotImplementedException();
         }
