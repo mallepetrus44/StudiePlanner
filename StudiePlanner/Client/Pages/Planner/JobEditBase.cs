@@ -42,7 +42,7 @@ namespace StudiePlanner.Client.Pages.Planner
             }
             else
             {
-                Job = await JobDataService.GetJobDetails(Guid.Parse(Id));
+                Job = await JobDataService.GetJobDetails(int.Parse(Id));
             }
 
 
@@ -52,7 +52,7 @@ namespace StudiePlanner.Client.Pages.Planner
         {
 
 
-            if (Job.Id == null) //new
+            if (Job.Id == 0) //new
             {
                 var addedJob = await JobDataService.AddJob(Job);
                 if (addedJob != null)
@@ -95,7 +95,7 @@ namespace StudiePlanner.Client.Pages.Planner
 
         protected void NavigateToOverview()
         {
-            NavigationManager.NavigateTo("/fotomodeloverzicht");
+            NavigationManager.NavigateTo("/Planner/JobIndex");
         }
 
 

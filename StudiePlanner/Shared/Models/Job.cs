@@ -8,7 +8,7 @@ namespace StudiePlanner.Shared.Models
 {
     public class Job
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Detail { get; set; }
         public string Notification { get; set; }

@@ -25,7 +25,7 @@ namespace StudiePlanner.Server.Models
             return addJob.Entity;
         }
 
-        public void DeleteJob(Guid jobId)
+        public void DeleteJob(int jobId)
         {
             var Job = _mBDbContext.Jobs.FirstOrDefault(e => e.Id == jobId);
             if (Job == null) return;
@@ -39,7 +39,7 @@ namespace StudiePlanner.Server.Models
             return _mBDbContext.Jobs;
         }
 
-        public Job GetJobById(Guid jobId)
+        public Job GetJobById(int jobId)
         {
             return _mBDbContext.Jobs.FirstOrDefault(c => c.Id == jobId);
         }

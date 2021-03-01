@@ -30,7 +30,7 @@ namespace StudiePlanner.Server.Controllers
 
         // GET: api/Job/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Job>> GetJob(Guid id)
+        public async Task<ActionResult<Job>> GetJob(int id)
         {
             var job = await _context.Jobs.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace StudiePlanner.Server.Controllers
         // PUT: api/Job/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutJob(Guid id, Job job)
+        public async Task<IActionResult> PutJob(int id, Job job)
         {
             if (id != job.Id)
             {
@@ -86,7 +86,7 @@ namespace StudiePlanner.Server.Controllers
 
         // DELETE: api/Job/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteJob(Guid id)
+        public async Task<IActionResult> DeleteJob(int id)
         {
             var job = await _context.Jobs.FindAsync(id);
             if (job == null)
@@ -100,7 +100,7 @@ namespace StudiePlanner.Server.Controllers
             return NoContent();
         }
 
-        private bool JobExists(Guid id)
+        private bool JobExists(int id)
         {
             return _context.Jobs.Any(e => e.Id == id);
         }

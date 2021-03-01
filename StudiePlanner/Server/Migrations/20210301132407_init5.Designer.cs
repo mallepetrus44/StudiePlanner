@@ -10,8 +10,8 @@ using StudiePlanner.Server.Data;
 namespace StudiePlanner.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210301122434_1")]
-    partial class _1
+    [Migration("20210301132407_init5")]
+    partial class init5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -345,8 +345,8 @@ namespace StudiePlanner.Server.Migrations
                     b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("JobId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("JobId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -360,9 +360,10 @@ namespace StudiePlanner.Server.Migrations
 
             modelBuilder.Entity("StudiePlanner.Shared.Models.Job", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
