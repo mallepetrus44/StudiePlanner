@@ -1,0 +1,37 @@
+﻿@page "/Planner/JobIndex"
+@inherits JobIndexBase
+
+<h1 class="page-title">Alle Taken</h1>
+
+
+@if (Jobs == null)
+{
+    <p><em>Loading...</em></p>}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>TaakId</th>
+                <th>Taakomschrijving</th>
+                <th>Startdatum</th>
+                <th>Einddatum</th>
+                <th>Aanmaakdatum</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in Jobs)
+            {
+            <tr>
+                <td>@job.Id</td>
+                <td>@job.Name</td>
+                <td>@job.StartDate</td>
+                <td>@job.EndDate</td>
+                <td>@job.DateAdded</td>
+                <td>@job.Status</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
