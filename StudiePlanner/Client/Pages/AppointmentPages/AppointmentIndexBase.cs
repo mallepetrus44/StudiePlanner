@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 using StudiePlanner.Client.Services;
 using StudiePlanner.Shared.Models;
 
-namespace StudiePlanner.Client.Pages.OppointmentPages
+namespace StudiePlanner.Client.Pages.AppointmentPages
 {
     public class AppointmentIndexBase : ComponentBase
     {
