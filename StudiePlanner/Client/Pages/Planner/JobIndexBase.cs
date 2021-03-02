@@ -16,6 +16,7 @@ namespace StudiePlanner.Client.Pages.Planner
 
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
+        protected string StatusHeadingClass = string.Empty;
         protected bool Saved;
 
         protected override async Task OnInitializedAsync()
@@ -24,17 +25,18 @@ namespace StudiePlanner.Client.Pages.Planner
             await Task.Run(()=> CheckAllDates());
         }
 
-        protected async Task CheckAllDates()
+        protected Task CheckAllDates()
         {
             foreach (var job in Jobs)
             {
                 if(job.EndDate <= DateTime.Now)
                 {
                     StatusClass = "alert-danger";
-                    Message = "De einddatum voor opdracht "+ job.Name+" is verstreken";
-                    Saved = true;
+                    Message += "De einddatum voor opdracht " + job.Name + " is verstreken \n";
                 }
             }
+
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿@page "/Planner/JobDetail/{Id}"
+@inherits JobDetailBase
+
+<section class="Job-detail">
+    <h1 class="page-title">Details for @Job.Name</h1>
+
+    <div class="col-12 row">
+        <div class="col-10 row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Id</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Job.Id</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Titel</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Job.Name</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Detail</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Job.Detail</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Startdatum</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Job.StartDate</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Einddatum</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Job.EndDate</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Aanmaakdatum</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Job.DateAdded</label>
+                    </div>
+                </div>
+
+                <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Terug naar overzicht</a>
+
+            </div>
+        </div>
+    </div>
+</section>
