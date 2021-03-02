@@ -32,6 +32,7 @@ namespace StudiePlanner.Server
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IJobRepo, JobRepo>();
+            services.AddScoped<IAppointmentRepo, AppointmentRepo>();
 
             //services.AddHttpClient<IJobDataService, JobDataService>(client =>
             //{

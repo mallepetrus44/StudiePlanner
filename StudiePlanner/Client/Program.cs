@@ -28,6 +28,10 @@ namespace StudiePlanner.Client
             {
                 client.BaseAddress = new Uri("https://localhost:44358");
             });
+            builder.Services.AddHttpClient<IAppointmentDataService, AppointmentDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44358");
+            });
             builder.Services.AddApiAuthorization();
 
             await builder.Build().RunAsync();

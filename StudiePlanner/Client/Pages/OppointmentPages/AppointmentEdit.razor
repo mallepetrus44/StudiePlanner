@@ -1,0 +1,73 @@
+﻿@page "/AppointmentPages/AppointmentEdit"
+@page "/AppointmentPages/AppointmentEdit/{Id}"
+@using StudiePlanner.Shared.Models
+@inherits AppointmentEditBase
+
+<section class="Appointment-edit">
+    @if (!Saved)
+    {
+        <h1 class="page-title">Details for @Appointment.Title</h1>
+        <EditForm Model="@Appointment" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="title">Titel: </label>
+                <InputText id="title" class="form-control" @bind-Value="@Appointment.Title" placeholder="Titel"></InputText>
+                <ValidationMessage For="@(() => Appointment.Title)" />
+            </div>
+
+            <div class="form-group">
+                <label for="details">Details: </label>
+                <InputText id="details" class="form-control" @bind-Value="@Appointment.Detail" placeholder="Details"></InputText>
+                <ValidationMessage For="@(() => Appointment.Detail)" />
+            </div>
+
+            <div class="form-group">
+                <label for="StartDate">Datum: </label>
+                <InputDate id="StartDate" class="form-control" @bind-Value="@Appointment.Date" placeholder="Startdatum"></InputDate>
+                <ValidationMessage For="@(() => Appointment.Date)" />
+            </div>
+
+
+            @*<div class="form-group">
+                    <label for="DateAdded">Aanmaakdatum: </label>
+                    <InputDate id="DateAdded" class="form-control" @bind-Value="@Appointment.DateAdded" placeholder="Aanmaakdatum"></InputDate>
+                    <ValidationMessage For="@(() => Appointment.DateAdded)" />
+                </div>*@
+
+            <div class="form-group row">
+                <label for="status" class="col-sm-3">Status: </label>
+                <InputSelect id="status" class="form-control col-sm-8" @bind-Value=@Appointment.AppointmentType>
+                    <option value="@(AppointmentType.Chat)">@AppointmentType.Chat</option>
+                    <option value="@(AppointmentType.Email)">@AppointmentType.Email</option>
+                    <option value="@(AppointmentType.Persoonlijk)">@AppointmentType.Persoonlijk</option>
+                    <option value="@(AppointmentType.Telefonisch)">@AppointmentType.Telefonisch</option>
+                </InputSelect>
+            </div>
+
+            @*<div class="form-group">
+                    <label for="Bestanden">Document: </label>
+
+                    <InputFile OnChange="HandleFileSelected" />
+
+                    @if (File != null)
+                    {
+                        <p>Name: @File.Name</p>
+                        <p>Size in bytes: @File.Size</p>
+                        <p>Last modified date: @File.LastModified.ToShortDateString()</p>
+                    }
+
+                    <ValidationMessage For="@(() => Appointment.Upload)" />
+                </div>*@
+
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+        </EditForm>
+    }
+    else
+    {
+        <div class="alert @StatusClass">@Message</div>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Back to overview</a>
+    }
+</section>

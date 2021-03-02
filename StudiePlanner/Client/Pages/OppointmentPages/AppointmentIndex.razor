@@ -1,0 +1,36 @@
+﻿@page "/AppointmentPages/AppointmentIndex"
+@inherits AppointmentIndexBase
+
+<h1 class="page-title">Alle Afspraken</h1>
+
+
+@if (Appointments == null)
+{
+    <p><em>Loading...</em></p>}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>AfspraakId</th>
+                <th>Onderwerp</th>
+                <th>Datum</th>
+                <th>AppointmentType</th>
+                <th>Aanmaakdatum</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appointment in Appointments)
+            {
+                <tr>
+                    <td>@appointment.Id</td>
+                    <td>@appointment.Title</td>
+                    <td>@appointment.Date</td>
+                    <td>@appointment.AppointmentType</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
