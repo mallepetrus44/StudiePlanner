@@ -30,7 +30,7 @@ namespace StudiePlanner.Server.Controllers
 
         // GET: api/Appointment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Appointment>> GetAppointment(Guid id)
+        public async Task<ActionResult<Appointment>> GetAppointment(int id)
         {
             var appointment = await _context.Appointments.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace StudiePlanner.Server.Controllers
         // PUT: api/Appointment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppointment(Guid id, Appointment appointment)
+        public async Task<IActionResult> PutAppointment(int id, Appointment appointment)
         {
             if (id != appointment.Id)
             {
@@ -86,7 +86,7 @@ namespace StudiePlanner.Server.Controllers
 
         // DELETE: api/Appointment/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppointment(Guid id)
+        public async Task<IActionResult> DeleteAppointment(int id)
         {
             var appointment = await _context.Appointments.FindAsync(id);
             if (appointment == null)
@@ -100,7 +100,7 @@ namespace StudiePlanner.Server.Controllers
             return NoContent();
         }
 
-        private bool AppointmentExists(Guid id)
+        private bool AppointmentExists(int id)
         {
             return _context.Appointments.Any(e => e.Id == id);
         }

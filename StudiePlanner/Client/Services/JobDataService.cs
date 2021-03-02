@@ -48,7 +48,7 @@ namespace StudiePlanner.Client.Services
         public async Task<Job> GetJobDetails(int jobId)
         {
             return await JsonSerializer.DeserializeAsync<Job>
-                (await _httpClient.GetStreamAsync($"api/klant/{jobId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                (await _httpClient.GetStreamAsync($"api/job/{jobId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task UpdateJob(Job job)
@@ -56,7 +56,7 @@ namespace StudiePlanner.Client.Services
             var jobJson =
                   new StringContent(JsonSerializer.Serialize(job), Encoding.UTF8, "application/json");
 
-            await _httpClient.PutAsync("api/klant", jobJson);
+            await _httpClient.PutAsync("api/job", jobJson);
         }
 
         public async Task<string> UploadJobDoc(MultipartFormDataContent content)

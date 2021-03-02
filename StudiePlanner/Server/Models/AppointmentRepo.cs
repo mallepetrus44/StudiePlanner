@@ -23,7 +23,7 @@ namespace StudiePlanner.Server.Models
             return addAppointment.Entity;
         }
 
-        public void DeleteAppointment(Guid appointmentId)
+        public void DeleteAppointment(int appointmentId)
         {
             var Appointment = _mBDbContext.Appointments.FirstOrDefault(e => e.Id == appointmentId);
             if (Appointment == null) return;
@@ -37,7 +37,7 @@ namespace StudiePlanner.Server.Models
             return _mBDbContext.Appointments;
         }
 
-        public Appointment GetAppointmentById(Guid appointmentId)
+        public Appointment GetAppointmentById(int appointmentId)
         {
             return _mBDbContext.Appointments.FirstOrDefault(c => c.Id == appointmentId);
         }

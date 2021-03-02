@@ -2,7 +2,7 @@
 
 namespace StudiePlanner.Server.Migrations
 {
-    public partial class _3 : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -33,7 +33,7 @@ namespace StudiePlanner.Client.Services
             return null;
         }
 
-        public async Task DeleteAppointment(Guid appointmentId)
+        public async Task DeleteAppointment(int appointmentId)
         {
             await _httpClient.DeleteAsync($"api/appointment/{appointmentId}");
         }
@@ -44,7 +44,7 @@ namespace StudiePlanner.Client.Services
                   (await _httpClient.GetStreamAsync($"api/appointment"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<Appointment> GetAppointmentDetails(Guid appointmentId)
+        public async Task<Appointment> GetAppointmentDetails(int appointmentId)
         {
             return await JsonSerializer.DeserializeAsync<Appointment>
                 (await _httpClient.GetStreamAsync($"api/appointment/{appointmentId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });

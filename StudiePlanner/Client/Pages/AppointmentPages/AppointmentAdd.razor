@@ -1,12 +1,12 @@
-﻿@page "/AppointmentPages/AppointmentEdit"
-@page "/AppointmentPages/AppointmentEdit/{Id}"
+﻿@page "/AppointmentPages/AppointmentAdd"
+@page "/AppointmentPages/AppointmentAdd/{Id}" 
 @using StudiePlanner.Shared.Models
-@inherits AppointmentEditBase
+@inherits AppointmentAddBase
 
-<section class="Appointment-edit">
+<section class="Appointment-add">
     @if (!Saved)
     {
-        <h1 class="page-title">Details for @Appointment.Title</h1>
+        <h1 class="page-title">Nieuwe afspraak maken</h1>
         <EditForm Model="@Appointment" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
 
             <DataAnnotationsValidator />
@@ -30,13 +30,6 @@
                 <ValidationMessage For="@(() => Appointment.Date)" />
             </div>
 
-
-            @*<div class="form-group">
-                    <label for="DateAdded">Aanmaakdatum: </label>
-                    <InputDate id="DateAdded" class="form-control" @bind-Value="@Appointment.DateAdded" placeholder="Aanmaakdatum"></InputDate>
-                    <ValidationMessage For="@(() => Appointment.DateAdded)" />
-                </div>*@
-
             <div class="form-group row">
                 <label for="AppointmentType" class="col-sm-3">Voorkeur contactvorm: </label>
                 <InputSelect id="AppointmentType" class="form-control col-sm-8" @bind-Value=@Appointment.AppointmentType>
@@ -47,27 +40,12 @@
                 </InputSelect>
             </div>
 
-            @*<div class="form-group">
-                    <label for="Bestanden">Document: </label>
-
-                    <InputFile OnChange="HandleFileSelected" />
-
-                    @if (File != null)
-                    {
-                        <p>Name: @File.Name</p>
-                        <p>Size in bytes: @File.Size</p>
-                        <p>Last modified date: @File.LastModified.ToShortDateString()</p>
-                    }
-
-                    <ValidationMessage For="@(() => Appointment.Upload)" />
-                </div>*@
-
             <button type="submit" class="btn btn-primary">Opslaan</button>
         </EditForm>
     }
     else
     {
         <div class="alert @StatusClass">@Message</div>
-        <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Back to overview</a>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Terug naar overzicht</a>
     }
 </section>

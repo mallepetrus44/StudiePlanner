@@ -16,20 +16,34 @@ else
                 <th>Onderwerp</th>
                 <th>Datum</th>
                 <th>AppointmentType</th>
-                <th>Aanmaakdatum</th>
-                <th>Status</th>
+                <th>JobId</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var appointment in Appointments)
             {
-                <tr>
-                    <td>@appointment.Id</td>
-                    <td>@appointment.Title</td>
-                    <td>@appointment.Date</td>
-                    <td>@appointment.AppointmentType</td>
-
-                </tr>
+            <tr>
+                <td>@appointment.Id</td>
+                <td>@appointment.Title</td>
+                <td>@appointment.Date</td>
+                <td>@appointment.AppointmentType</td>
+                <td>@appointment.JobId</td>
+                <td>
+                    <a href="@($"AppointmentPages/AppointmentDetail/{appointment.Id}")" class="btn btn-primary table-btn">
+                        @*<i class="fas fa-info-circle"></i>*@
+                        Details
+                    </a>
+                    <a href="@($"AppointmentPages/AppointmentEdit/{appointment.Id}")" class="btn btn-primary table-btn">
+                        @*<i class="fas fa-edit"></i>*@
+                        Aanpassen
+                    </a>
+                    <a href="@($"AppointmentPages/AppointmentDelete/{appointment.Id}")" class="btn btn-danger table-btn">
+                        @*<i class="fas fa-edit"></i>*@
+                        Verwijderen
+                    </a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

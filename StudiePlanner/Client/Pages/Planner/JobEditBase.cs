@@ -35,10 +35,15 @@ namespace StudiePlanner.Client.Pages.Planner
 
             int.TryParse(Id, out var JobID);
 
-            if (JobID == 0) //new Customer is being created
+            if (JobID == 0) //new job is being created
             {
                 //add some defaults
-                Job = new Job { };
+                Job = new Job { 
+                
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    DateAdded = DateTime.Now
+                };
             }
             else
             {

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using StudiePlanner.Client.Services;
+using StudiePlanner.Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using StudiePlanner.Client.Services;
-using StudiePlanner.Shared.Models;
 
 namespace StudiePlanner.Client.Pages.AppointmentPages
 {
-    public class AppointmentEditBase : ComponentBase
+    public class AppointmentAddBase : ComponentBase
     {
         [Inject]
         public IAppointmentDataService AppointmentDataService { get; set; }
@@ -30,30 +30,14 @@ namespace StudiePlanner.Client.Pages.AppointmentPages
         {
             Saved = false;
 
-
-            int.TryParse(Id, out var AppointmentID);
-
-            if (AppointmentID == 0) //new Customer is being created
-            {
-                //add some defaults
-                Appointment = new Appointment {
-                Date =DateTime.Now
-                };
-            }
-            else
-            {
-                Appointment = await AppointmentDataService.GetAppointmentDetails(int.Parse(Id));
-            }
-
-
         }
 
         protected async Task HandleValidSubmit()
         {
-
-
             if (Appointment.Id == 0) //new
             {
+                Appointment.JobId = Id;
+                
                 var addedAppointment = await AppointmentDataService.AddAppointment(Appointment);
                 if (addedAppointment != null)
                 {

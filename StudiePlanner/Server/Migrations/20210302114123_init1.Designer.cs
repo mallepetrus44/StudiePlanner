@@ -10,8 +10,8 @@ using StudiePlanner.Server.Data;
 namespace StudiePlanner.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210301133326_3")]
-    partial class _3
+    [Migration("20210302114123_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -332,9 +332,10 @@ namespace StudiePlanner.Server.Migrations
 
             modelBuilder.Entity("StudiePlanner.Shared.Models.Appointment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AppointmentType")
                         .HasColumnType("int");
@@ -345,24 +346,28 @@ namespace StudiePlanner.Server.Migrations
                     b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("JobId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("JobId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("JobId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JobId");
+                    b.HasIndex("JobId1");
 
                     b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("StudiePlanner.Shared.Models.Job", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
@@ -448,7 +453,7 @@ namespace StudiePlanner.Server.Migrations
                 {
                     b.HasOne("StudiePlanner.Shared.Models.Job", null)
                         .WithMany("Appointments")
-                        .HasForeignKey("JobId");
+                        .HasForeignKey("JobId1");
                 });
 
             modelBuilder.Entity("StudiePlanner.Shared.Models.Job", b =>
