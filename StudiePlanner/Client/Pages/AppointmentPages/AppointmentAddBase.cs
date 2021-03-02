@@ -29,6 +29,10 @@ namespace StudiePlanner.Client.Pages.AppointmentPages
         protected override async Task OnInitializedAsync()
         {
             Saved = false;
+            Appointment = new Appointment
+            {
+                Date = DateTime.Now
+            };
 
         }
 

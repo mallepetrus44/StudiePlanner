@@ -14,6 +14,7 @@ namespace StudiePlanner.Shared.Models
         public AppointmentType AppointmentType { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
         public string Detail { get; set; }
         public string JobId { get; set; }
