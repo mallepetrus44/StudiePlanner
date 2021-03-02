@@ -10,8 +10,8 @@ using StudiePlanner.Server.Data;
 namespace StudiePlanner.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210302111555_init")]
-    partial class init
+    [Migration("20210302133905_4")]
+    partial class _4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

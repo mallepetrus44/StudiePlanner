@@ -1,0 +1,60 @@
+﻿@page "/AppointmentPages/Appointmentdetail/{Id}"
+@using StudiePlanner.Shared.Models
+@inherits AppointmentDetailBase
+
+<h1 class="page-title">Details for "@Appointment.Title"</h1>
+
+<div class="col-12 row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-10 row">
+        <div class="col-xs-12 col-sm-8">
+
+            <h2>Afspraak</h2>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Appointment Id</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Appointment.Id</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Onderwerp</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Appointment.Title</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Details</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Appointment.Detail</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Date</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Appointment.Date</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">AppointmentType</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Appointment.AppointmentType</label>
+                </div>
+            </div>
+
+
+            <h2>Taak</h2>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">JobId</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Appointment.JobId</label>
+                </div>
+            </div>
+            
+            <a class="btn btn-outline-primary" @onclick="@NavigateToOverView">Back to overview</a>
+            <p></p>
+        </div>
+    </div>
+</div>
