@@ -32,10 +32,10 @@
 
 
             @*<div class="form-group">
-                    <label for="DateAdded">Aanmaakdatum: </label>
-                    <InputDate id="DateAdded" class="form-control" @bind-Value="@Appointment.DateAdded" placeholder="Aanmaakdatum"></InputDate>
-                    <ValidationMessage For="@(() => Appointment.DateAdded)" />
-                </div>*@
+            <label for="DateAdded">Aanmaakdatum: </label>
+            <InputDate id="DateAdded" class="form-control" @bind-Value="@Appointment.DateAdded" placeholder="Aanmaakdatum"></InputDate>
+            <ValidationMessage For="@(() => Appointment.DateAdded)" />
+        </div>*@
 
             <div class="form-group row">
                 <label for="AppointmentType" class="col-sm-3">Voorkeur contactvorm: </label>
@@ -48,22 +48,26 @@
             </div>
 
             @*<div class="form-group">
-                    <label for="Bestanden">Document: </label>
+            <label for="Bestanden">Document: </label>
 
-                    <InputFile OnChange="HandleFileSelected" />
+            <InputFile OnChange="HandleFileSelected" />
 
-                    @if (File != null)
-                    {
-                        <p>Name: @File.Name</p>
-                        <p>Size in bytes: @File.Size</p>
-                        <p>Last modified date: @File.LastModified.ToShortDateString()</p>
-                    }
+            @if (File != null)
+            {
+                <p>Name: @File.Name</p>
+                <p>Size in bytes: @File.Size</p>
+                <p>Last modified date: @File.LastModified.ToShortDateString()</p>
+            }
 
-                    <ValidationMessage For="@(() => Appointment.Upload)" />
-                </div>*@
+            <ValidationMessage For="@(() => Appointment.Upload)" />
+        </div>*@
+
 
             <button type="submit" class="btn btn-primary">Opslaan</button>
+            
         </EditForm>
+
+    
     }
     else
     {
