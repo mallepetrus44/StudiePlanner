@@ -34,7 +34,7 @@ namespace StudiePlanner.Client.Pages.AppointmentPages
 
         protected void NavigateToOverView()
         {
-            NavigationManager.NavigateTo("/AppointmentIndex");
+            NavigationManager.NavigateTo("/AppointmentPages/AppointmentIndex");
         }
 
         protected async Task DeleteAppointment()
@@ -46,7 +46,7 @@ namespace StudiePlanner.Client.Pages.AppointmentPages
 
             Saved = true;
 
-            NavigationManager.NavigateTo("/AppointmentIndex");
+            NavigationManager.NavigateTo("/AppointmentPages/AppointmentIndex");
         }
     }
 }

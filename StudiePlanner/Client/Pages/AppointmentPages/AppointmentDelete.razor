@@ -1,6 +1,6 @@
 ﻿@page "/AppointmentPages/AppointmentDelete/{Id}"
 @using StudiePlanner.Shared.Models
-@inherits AppointmentDetailBase
+@inherits AppointmentDeleteBase
 
 <h1 class="page-title">Weet je zeker dat je de volgende afspraak wilt verwijderen?</h1>
 
@@ -52,7 +52,7 @@
                     <label type="text" class="form-control-plaintext">@Appointment.JobId</label>
                 </div>
             </div>
-            <a class="btn btn-danger" @onclick="@NavigateToOverView">Ja</a>
+            <a class="btn btn-danger" @onclick="@DeleteAppointment">Ja</a>
             <a class="btn btn-outline-primary" @onclick="@NavigateToOverView">Nee</a>
             <p></p>
         </div>
