@@ -10,10 +10,10 @@ namespace StudiePlanner.Server.Models
     public interface IJobRepo
     {
         IEnumerable<Job> GetAllJobs();
-        Job GetJobById(Guid jobId);
+        Job GetJobById(int jobId);
         Job AddJob(Job job);
         Job UpdateJob(Job job);
-        void DeleteJob(Guid jobId);
+        void DeleteJob(int jobId);
         MultipartFormDataContent UploadJobDoc(MultipartFormDataContent content);
     }
 }

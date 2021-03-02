@@ -34,7 +34,7 @@ namespace StudiePlanner.Client.Services
             return null;
         }
 
-        public async Task DeleteJob(Guid jobId)
+        public async Task DeleteJob(int jobId)
         {
             await _httpClient.DeleteAsync($"api/job/{jobId}");
         }
@@ -45,7 +45,7 @@ namespace StudiePlanner.Client.Services
                  (await _httpClient.GetStreamAsync($"api/job"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<Job> GetJobDetails(Guid jobId)
+        public async Task<Job> GetJobDetails(int jobId)
         {
             return await JsonSerializer.DeserializeAsync<Job>
                 (await _httpClient.GetStreamAsync($"api/klant/{jobId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
