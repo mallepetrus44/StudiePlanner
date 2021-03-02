@@ -21,7 +21,7 @@ namespace StudiePlanner.Client.Pages.Planner
         protected override async Task OnInitializedAsync()
         {
             Jobs = (await JobDataService.GetAllJobs()).ToList();
-
+            await Task.Run(()=> CheckAllDates());
         }
 
         protected async Task CheckAllDates()
@@ -31,7 +31,7 @@ namespace StudiePlanner.Client.Pages.Planner
                 if(job.EndDate <= DateTime.Now)
                 {
                     StatusClass = "alert-danger";
-                    //Message = ($"{0} is nog niet afgerond: De einddatum is {1}", job.Name, job.EndDate.());
+                    Message = "De einddatum voor opdracht "+ job.Name+" is verstreken";
                     Saved = true;
                 }
             }
