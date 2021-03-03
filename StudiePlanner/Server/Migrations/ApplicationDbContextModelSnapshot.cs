@@ -344,10 +344,7 @@ namespace StudiePlanner.Server.Migrations
                     b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("JobId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("JobId1")
+                    b.Property<int>("JobId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -355,9 +352,56 @@ namespace StudiePlanner.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JobId1");
+                    b.HasIndex("JobId");
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppointmentType = 2,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Appointment 1",
+                            JobId = 5,
+                            Title = "Appointment 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AppointmentType = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Appointment 2",
+                            JobId = 4,
+                            Title = "Appointment 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AppointmentType = 3,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Appointment 3",
+                            JobId = 3,
+                            Title = "Appointment 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AppointmentType = 3,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Appointment 4",
+                            JobId = 2,
+                            Title = "Appointment 4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AppointmentType = 0,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Appointment 5",
+                            JobId = 1,
+                            Title = "Appointment 5"
+                        });
                 });
 
             modelBuilder.Entity("StudiePlanner.Shared.Models.Job", b =>
@@ -394,6 +438,58 @@ namespace StudiePlanner.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Jobs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Job 1",
+                            EndDate = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "John Doe",
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Job 2",
+                            EndDate = new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jane Doe",
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Job 3",
+                            EndDate = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jane Doe",
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Job 4",
+                            EndDate = new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jane Doe",
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detail = "Test Job 5",
+                            EndDate = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jane Doe",
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -451,7 +547,9 @@ namespace StudiePlanner.Server.Migrations
                 {
                     b.HasOne("StudiePlanner.Shared.Models.Job", null)
                         .WithMany("Appointments")
-                        .HasForeignKey("JobId1");
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("StudiePlanner.Shared.Models.Job", b =>

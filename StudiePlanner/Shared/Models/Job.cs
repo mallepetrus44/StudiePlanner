@@ -9,6 +9,7 @@ namespace StudiePlanner.Shared.Models
 {
     public class Job
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Detail { get; set; }

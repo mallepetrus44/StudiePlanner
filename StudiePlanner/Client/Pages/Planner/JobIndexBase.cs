@@ -20,6 +20,9 @@ namespace StudiePlanner.Client.Pages.Planner
         public string dagenswitch { get; set; }
         public Notification notification { get; set; }
         public List<Job> Jobs { get; set; }
+        public List<string> Messages { get; set; }
+
+        public int currentCount { get; set; }
 
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
@@ -28,31 +31,22 @@ namespace StudiePlanner.Client.Pages.Planner
         protected override async Task OnInitializedAsync()
         {
             Jobs = (await JobDataService.GetAllJobs()).ToList();
-            await Task.Run(() => JustDoIt());
+            Getid();
         }
+        public async void Getid()
+        {
 
-        //public async void JustDoIt()
-        //{
-        //    if (Jobs != null)
-        //    {
-        //        foreach (var job in Jobs)
-        //        {
-        //            if (job.EndDate <= DateTime.Now)
-        //            {
-        //                var dagenvertraagd = DateTime.Now.Subtract(job.EndDate).TotalDays;
-        //                if (dagenvertraagd == 1)
-        //                {
-        //                    dagenswitch = "dag";
-        //                }
-        //                dagenswitch = "dagen";
+            foreach (var job in Jobs)
+            {
+                if (job.EndDate <= DateTime.Now)
+                {
+                    currentCount = job.Id;
+                    Message = "Opdracht: " + currentCount.ToString() + " is te laat";
+                    await NotificationService.AddMessage(new Notification(Message, Notifications.Danger));
+                }
 
-
-        //                Message = ($"Taak {job.Name} is niet tijdig afgerond!");
-        //            }
-        //            continue;
-        //        }
-        //        await NotificationService.AddMessage(new Notification(Message.ToString(), Notifications.Danger));
-        //    }
-        //}
+            }
+        }
     }
 }
+        

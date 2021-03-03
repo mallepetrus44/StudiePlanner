@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudiePlanner.Server.Migrations
 {
-    public partial class _4 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -223,24 +223,47 @@ namespace StudiePlanner.Server.Migrations
                     AppointmentType = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Detail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    JobId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    JobId1 = table.Column<int>(type: "int", nullable: true)
+                    JobId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Appointments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Appointments_Jobs_JobId1",
-                        column: x => x.JobId1,
+                        name: "FK_Appointments_Jobs_JobId",
+                        column: x => x.JobId,
                         principalTable: "Jobs",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Jobs",
+                columns: new[] { "Id", "DateAdded", "Detail", "EndDate", "Name", "Notification", "StartDate", "Status", "Upload" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Job 1", new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Doe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Job 2", new DateTime(2021, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane Doe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Job 3", new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane Doe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null },
+                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Job 4", new DateTime(2021, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane Doe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null },
+                    { 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Job 5", new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane Doe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Appointments",
+                columns: new[] { "Id", "AppointmentType", "Date", "Detail", "JobId", "Title" },
+                values: new object[,]
+                {
+                    { 5, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Appointment 5", 1, "Appointment 5" },
+                    { 4, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Appointment 4", 2, "Appointment 4" },
+                    { 3, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Appointment 3", 3, "Appointment 3" },
+                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Appointment 2", 4, "Appointment 2" },
+                    { 1, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test Appointment 1", 5, "Appointment 1" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointments_JobId1",
+                name: "IX_Appointments_JobId",
                 table: "Appointments",
-                column: "JobId1");
+                column: "JobId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -28,7 +28,7 @@ namespace StudiePlanner.Client.Services
             {
                 this.messages.RemoveAt(0);
                 RefreshRequested?.Invoke();
-            }, null, 8000, System.Threading.Timeout.Infinite);
+            }, null, 4000, System.Threading.Timeout.Infinite);
             return messages;
         }
     }

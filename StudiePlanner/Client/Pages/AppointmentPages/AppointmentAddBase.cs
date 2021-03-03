@@ -19,7 +19,7 @@ namespace StudiePlanner.Client.Pages.AppointmentPages
 
 
         [Parameter]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
