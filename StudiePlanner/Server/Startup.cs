@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using StudiePlanner.Client.Services;
 using StudiePlanner.Server.Data;
 using StudiePlanner.Server.Models;
+using StudiePlanner.Shared.Models;
 using System;
 using System.Linq;
 
@@ -33,6 +34,7 @@ namespace StudiePlanner.Server
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IJobRepo, JobRepo>();
             services.AddScoped<IAppointmentRepo, AppointmentRepo>();
+
 
             //services.AddHttpClient<IJobDataService, JobDataService>(client =>
             //{
