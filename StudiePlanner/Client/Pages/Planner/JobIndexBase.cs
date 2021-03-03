@@ -20,7 +20,6 @@ namespace StudiePlanner.Client.Pages.Planner
         public string dagenswitch { get; set; }
         public Notification notification { get; set; }
         public List<Job> Jobs { get; set; }
-        public List<INotification> Messages { get; set; }
 
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
@@ -29,29 +28,31 @@ namespace StudiePlanner.Client.Pages.Planner
         protected override async Task OnInitializedAsync()
         {
             Jobs = (await JobDataService.GetAllJobs()).ToList();
+            await Task.Run(() => JustDoIt());
         }
-        //    await Task.Run(()=>JustDoIt());
-            
-        //}
+
         //public async void JustDoIt()
         //{
-        //    foreach (var job in Jobs)
+        //    if (Jobs != null)
         //    {
-        //        if (job.EndDate <= DateTime.Now)
+        //        foreach (var job in Jobs)
         //        {
-        //            var dagenvertraagd = DateTime.Now.Subtract(job.EndDate).TotalDays;
-        //            if (dagenvertraagd == 1)
+        //            if (job.EndDate <= DateTime.Now)
         //            {
-        //                dagenswitch = "dag";
+        //                var dagenvertraagd = DateTime.Now.Subtract(job.EndDate).TotalDays;
+        //                if (dagenvertraagd == 1)
+        //                {
+        //                    dagenswitch = "dag";
+        //                }
+        //                dagenswitch = "dagen";
+
+
+        //                Message = ($"Taak {job.Name} is niet tijdig afgerond!");
         //            }
-        //            dagenswitch = "dagen";
-
-
-        //            notification.message = ($"Taak {job.Name}is niet tijdig afgerond!" + Environment.NewLine + $"Huidige datum : {DateTime.Now.Date}" + Environment.NewLine + $"De eindatum is : {job.EndDate.Date}" + Environment.NewLine + $"U bent {dagenvertraagd} {dagenswitch} te laat");
+        //            continue;
         //        }
-        //        continue;
+        //        await NotificationService.AddMessage(new Notification(Message.ToString(), Notifications.Danger));
         //    }
-        //    await NotificationService.AddMessage(new Notification(Message.ToString(), Notifications.Danger));
         //}
     }
 }
