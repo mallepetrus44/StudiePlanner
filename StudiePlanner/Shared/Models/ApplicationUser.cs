@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
 
-namespace StudiePlanner.Server.Models
+using Microsoft.AspNetCore.Identity;
+
+namespace StudiePlanner.Shared.Models
 {
     public class ApplicationUser : IdentityUser
     {

@@ -36,6 +36,7 @@ namespace StudiePlanner.Server
             services.AddScoped<IAppointmentRepo, AppointmentRepo>();
 
 
+
             //services.AddHttpClient<IJobDataService, JobDataService>(client =>
             //{
             //    client.BaseAddress = new Uri("https://localhost:44340/");

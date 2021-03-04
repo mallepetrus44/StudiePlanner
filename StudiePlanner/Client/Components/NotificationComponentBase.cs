@@ -14,7 +14,7 @@ namespace StudiePlanner.Client.Components
         public NotificationService NotificationService { get; set; }
         protected override void OnInitialized()
         {
-            Console.WriteLine("AlertComponent:Initializied");
+            //Console.WriteLine("AlertComponent:Initializied");
             NotificationService.RefreshRequested += Refresh;
         }
 
@@ -25,7 +25,7 @@ namespace StudiePlanner.Client.Components
 
         private void Refresh()
         {
-            Console.WriteLine("AlertComponent:refreshing");
+            //Console.WriteLine("AlertComponent:refreshing");
             StateHasChanged();
         }
     }

@@ -104,7 +104,6 @@ namespace StudiePlanner.Server.Data
                            JobId = 1
                        }
                 );
-
         }
     }
 

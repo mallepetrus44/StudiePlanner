@@ -24,7 +24,6 @@ namespace StudiePlanner.Client.Pages.Planner
         protected override async Task OnInitializedAsync()
         {
             Job = await JobDataService.GetJobDetails(int.Parse(Id));
-
         }
 
         protected void NavigateToOverview()

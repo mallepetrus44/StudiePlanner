@@ -19,6 +19,7 @@ namespace StudiePlanner.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+            builder.Services.AddScoped<ToastService>();
             builder.Services.AddSingleton<NotificationService>();
             builder.Services.AddHttpClient("StudiePlanner.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
