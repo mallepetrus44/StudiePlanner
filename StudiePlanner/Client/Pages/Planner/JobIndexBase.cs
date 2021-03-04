@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.Toast.Services;
+using Microsoft.AspNetCore.Components;
 using StudiePlanner.Client.Services;
-using StudiePlanner.Shared.Enums;
-using StudiePlanner.Shared.Interfaces;
 using StudiePlanner.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -13,27 +12,24 @@ namespace StudiePlanner.Client.Pages.Planner
     public class JobIndexBase : ComponentBase
     {
         [Inject]
-        public IJobDataService JobDataService { get; set; }
+        public IToastService ToastService { get; set; }
+
         [Inject]
-        public NotificationService NotificationService { get; set; }
+        public IJobDataService JobDataService { get; set; }
 
-        public string dagenswitch { get; set; }
-        public Notification notification { get; set; }
+        public string dagenswitch { get; set; }   
         public List<Job> Jobs { get; set; }
-        public List<string> Messages { get; set; }
-
+    
         public int currentCount { get; set; }
 
         protected string Message = string.Empty;
-        protected string StatusClass = string.Empty;
-        protected bool Saved;
 
         protected override async Task OnInitializedAsync()
         {
             Jobs = (await JobDataService.GetAllJobs()).ToList();
-            Getid();
+            await Task.Run(()=> Getid());
         }
-        public async void Getid()
+        public async Task Getid()
         {
 
             foreach (var job in Jobs)
@@ -42,7 +38,9 @@ namespace StudiePlanner.Client.Pages.Planner
                 {
                     currentCount = job.Id;
                     Message = "Opdracht: " + currentCount.ToString() + " is te laat";
-                    await NotificationService.AddMessage(new Notification(Message, Notifications.Danger));
+                    //await NotificationService.AddMessage(new Notification(Message, Notifications.Danger));
+                    await Task.Run(()=>ToastService.ShowError(Message.ToString()));
+
                 }
 
             }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.ResponseCompression;
+using Blazored.Toast;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +13,7 @@ using StudiePlanner.Server.Models;
 using StudiePlanner.Shared.Models;
 using System;
 using System.Linq;
+using Blazored.Toast.Services;
 
 namespace StudiePlanner.Server
 {
@@ -32,9 +33,10 @@ namespace StudiePlanner.Server
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddScoped<IToastService, ToastService>();
             services.AddScoped<IJobRepo, JobRepo>();
             services.AddScoped<IAppointmentRepo, AppointmentRepo>();
-
+            //services.AddBlazoredToast();
 
 
             //services.AddHttpClient<IJobDataService, JobDataService>(client =>
